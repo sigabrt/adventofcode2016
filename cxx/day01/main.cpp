@@ -1,8 +1,9 @@
+#include <cxx/config.h>
+
 #include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <numeric>
-#include <string>
 #include <sstream>
 #include <vector>
 
@@ -32,6 +33,8 @@ struct command {
       case 'L':
         start = static_cast<direction>(static_cast<int>(start) - 1);
         break;
+      default:
+        break;
     }
     if (start < kNorth) start = kWest;
     if (start > kWest) start = kNorth;
@@ -57,6 +60,8 @@ struct state {
         return coord{cur.x, cur.y-steps};
       case kWest:
         return coord{cur.x-steps, cur.y};
+      default:
+        return cur;
     }
   }
 
@@ -67,13 +72,15 @@ struct state {
 };
 
 int main(int argc, char *argv[]) {
-  std::ifstream infile{"../../input/day01.txt"};
+  std::ifstream infile{INPUT_DIR "day01.txt"};
   std::vector<std::string> tokens(std::istream_iterator<std::string>{infile},
                                   std::istream_iterator<std::string>{});
   std::vector<command> commands;
   std::transform(tokens.begin(), tokens.end(), std::back_inserter(commands), &command::from_string);
-  state final_state = std::accumulate(commands.begin(), commands.end(), state{kNorth, {0, 0}}, &state::act);
 
+  // Part 1
+  state final_state = std::accumulate(commands.begin(), commands.end(), state{kNorth, {0, 0}}, &state::act);
   std::cout << final_state.pos.x + final_state.pos.y << std::endl;
+
   return 0;
 }
