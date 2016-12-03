@@ -25,7 +25,7 @@ struct command {
 
   // TODO: feels like this could be more concise
   static direction turn(direction start, char action) {
-    switch(action) {
+    switch (action) {
       case 'R':
         start = static_cast<direction>(static_cast<int>(start) + 1);
         break;
