@@ -1,0 +1,9 @@
+language: cpp
+compiler:
+  - clang
+os:
+  - linux
+script:
+  - mkdir build
+  - cd build
+  - cmake ../cxx && make
