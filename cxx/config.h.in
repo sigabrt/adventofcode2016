@@ -1,6 +1,6 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#define INPUT_DIR "${PROJECT_SOURCE_DIR}/input/"
+#define INPUT_DIR "${PROJECT_SOURCE_DIR}/../input/"
 
 #endif // _CONFIG_H_

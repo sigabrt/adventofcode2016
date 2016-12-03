@@ -1,4 +1,4 @@
-#include <cxx/config.h>
+#include <config.h>
 
 #include <algorithm>
 #include <iostream>
