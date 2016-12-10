@@ -9,7 +9,8 @@ project(adventofcode2016)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall -Wextra -Werror")
 
 configure_file(config.h.in config.h)
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${PROJECT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(day01 day01/main.cpp)
 add_executable(day02 day02/main.cpp)
+add_executable(day03 day03/main.cpp)
