@@ -6,12 +6,12 @@
 #include <numeric>
 #include <vector>
 
-const int GRID_ROWS = 3;
-const int GRID_COLS = 3;
-const int GRID[GRID_ROWS][GRID_COLS] = {
-    {7, 8, 9},
-    {4, 5, 6},
-    {1, 2, 3},
+const int P1_GRID_ROWS = 3;
+const int P1_GRID_COLS = 3;
+const char P1_GRID[P1_GRID_ROWS][P1_GRID_COLS] = {
+    {'7', '8', '9'},
+    {'4', '5', '6'},
+    {'1', '2', '3'},
 };
 
 enum class move {
@@ -27,10 +27,10 @@ struct coord {
   static coord move(coord c, move m) {
     switch (m) {
       case move::kUp:
-        c.y = std::min(c.y + 1, GRID_ROWS-1);
+        c.y = std::min(c.y + 1, P1_GRID_ROWS-1);
         break;
       case move::kRight:
-        c.x = std::min(c.x + 1, GRID_COLS-1);
+        c.x = std::min(c.x + 1, P1_GRID_COLS-1);
         break;
       case move::kDown:
         c.y = std::max(c.y - 1, 0);
@@ -64,9 +64,9 @@ std::vector<move> parse_moves(const std::string &line) {
   return moves;
 }
 
-int get_code(const std::vector<move> &moves) {
+char get_code(const std::vector<move> &moves) {
   coord c = std::accumulate(moves.begin(), moves.end(), coord{1, 1}, &coord::move);
-  return GRID[c.y][c.x];
+  return P1_GRID[c.y][c.x];
 }
 
 int main(int, char *[]) {
@@ -77,11 +77,11 @@ int main(int, char *[]) {
   std::vector<std::vector<move>> moves;
   std::transform(lines.begin(), lines.end(), std::back_inserter(moves), &parse_moves);
 
-  std::vector<int> code;
+  std::vector<char> code;
   std::transform(moves.begin(), moves.end(), std::back_inserter(code), &get_code);
 
-  std::for_each(code.begin(), code.end(), [](int n) {
-    std::cout << n;
+  std::for_each(code.begin(), code.end(), [](char c) {
+    std::cout << c;
   });
   std::cout << std::endl;
 
