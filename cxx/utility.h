@@ -53,6 +53,15 @@ std::vector<T> split(const std::string &str) {
   return strings;
 }
 
+std::vector<std::string> split(const std::string &str, char delim) {
+  std::istringstream input(str);
+  std::vector<std::string> strings;
+  for (std::string line; std::getline(input, line, delim);) {
+    strings.push_back(line);
+  }
+  return strings;
+}
+
 template <typename InIter, typename OutIter, typename Fn>
 void flatmap(InIter begin, InIter end, OutIter out, Fn fn) {
   for (; begin != end; ++begin) {
